@@ -38,7 +38,6 @@ const eslintConfig = [
       
       // Keep important errors that you want to catch
       "react/jsx-key": "error", // Missing keys in lists
-      "@typescript-eslint/no-undef": "error", 
       "no-undef": "error", 
       "no-console": "warn", 
     },

@@ -1,16 +1,18 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Spotlight } from "@/components/ui/spotlight";
 import { client } from "@/lib/sanity.client";
 
 interface GenerateMetadataProps {
-  params: {
+  params: Promise<{
     slug?: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
+  const resolvedParams = await params;
 
-  if (!params.slug) {
+  if (!resolvedParams.slug) {
     return {
       title: "Hector John | Projects",
       description:
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
         title,
         shortDescription
       }
-    `, { slug: params.slug });
+    `, { slug: resolvedParams.slug });
 
     if (project) {
       return {
