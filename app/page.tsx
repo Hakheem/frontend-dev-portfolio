@@ -6,12 +6,12 @@ import ContactSection from "./_components/ContactSection";
 
 export default function Home() {
   return (
-    <div className='bg-black'>
+    <>
       <HeroSection />
       <ServicesGrid />
       <Projects />
       <AboutSection />
       <ContactSection />
-    </div>
+    </>
   );
 }
