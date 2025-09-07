@@ -5,17 +5,18 @@ import { client } from "@/lib/sanity.client";
 
 interface GenerateMetadataProps {
   params: {
-    slug?: string;
+    slug: string;
   };
 }
 
-
-
-export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: GenerateMetadataProps): Promise<Metadata> {
   if (!params.slug) {
     return {
       title: "Hector John | Projects",
-      description: "Frontend Developer and UI/UX Designer focused on building solutions..."
+      description:
+        "Frontend Developer and UI/UX Designer focused on building solutions...",
     };
   }
 
@@ -40,28 +41,23 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
 
   return {
     title: "Hector John | Project",
-    description: "View this project by Hector John - Frontend Developer and UI/UX Designer.",
+    description:
+      "View this project by Hector John - Frontend Developer and UI/UX Designer.",
   };
 }
 
-
-
 export default function ProjectsLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`overflow-x-hidden bg-black text-gray-300`}>
-        <Spotlight
-          className="fixed hidden lg:flex md:left-80 opacity-100 w-full top-0 pointer-events-none z-0"
-          fill="white"
-        />
-        <main className="mx-auto relative z-10">
-          {children}
-        </main>
-      </body>
-    </html>
+    <>
+      <Spotlight
+        className="fixed hidden lg:flex md:left-80 opacity-100 w-full top-0 pointer-events-none z-0"
+        fill="white"
+      />
+      <main className="mx-auto relative z-10">{children}</main>
+    </>
   );
 }
