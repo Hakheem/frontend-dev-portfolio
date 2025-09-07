@@ -3,16 +3,20 @@ import type { Metadata } from "next";
 import { Spotlight } from "@/components/ui/spotlight";
 import { client } from "@/lib/sanity.client";
 
+
 interface GenerateMetadataProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
+  children?: React.ReactNode;
 }
 
 export async function generateMetadata({
   params,
 }: GenerateMetadataProps): Promise<Metadata> {
-  if (!params.slug) {
+  const { slug } = await params;
+  
+  if (!slug) {
     return {
       title: "Hector John | Projects",
       description:
@@ -26,7 +30,7 @@ export async function generateMetadata({
         title,
         shortDescription
       }`,
-      { slug: params.slug }
+      { slug }
     );
 
     if (project) {
