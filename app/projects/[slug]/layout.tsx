@@ -4,30 +4,29 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { client } from "@/lib/sanity.client";
 
 interface GenerateMetadataProps {
-  params: Promise<{
+  params: {
     slug?: string;
-  }>;
+  };
 }
 
-export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
-  const resolvedParams = await params;
 
-  if (!resolvedParams.slug) {
+
+export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
+  if (!params.slug) {
     return {
       title: "Hector John | Projects",
-      description:
-        "Frontend Developer and UI/UX Designer focused on building solutions that users love and provide real world solutions. I bridge the gap between compelling design and technical execution, crafting end-to-end digital experiences that are both beautiful and functional.",
+      description: "Frontend Developer and UI/UX Designer focused on building solutions..."
     };
   }
 
   try {
-
-    const project = await client.fetch(`
-      *[_type == "project" && slug.current == $slug && (!defined(customSlug) || customSlug == "")][0] {
+    const project = await client.fetch(
+      `*[_type == "project" && slug.current == $slug && (!defined(customSlug) || customSlug == "")][0] {
         title,
         shortDescription
-      }
-    `, { slug: resolvedParams.slug });
+      }`,
+      { slug: params.slug }
+    );
 
     if (project) {
       return {
@@ -36,15 +35,16 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
       };
     }
   } catch (error) {
-    console.error('Error fetching project metadata:', error);
+    console.error("Error fetching project metadata:", error);
   }
 
-  // Fallback metadata if project not found
   return {
     title: "Hector John | Project",
     description: "View this project by Hector John - Frontend Developer and UI/UX Designer.",
   };
 }
+
+
 
 export default function ProjectsLayout({
   children,

@@ -29,9 +29,9 @@ interface Project {
 }
 
 interface SlugPageProps {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
 async function getProject(slug: string): Promise<Project | null> {
@@ -57,11 +57,9 @@ async function getProject(slug: string): Promise<Project | null> {
 }
 
 const SlugPage = async ({ params }: SlugPageProps) => {
-  const resolvedParams = await params;
-  const project = await getProject(resolvedParams.slug);
+  const project = await getProject(params.slug);
 
-  if (!project) {
-    notFound();
+  if (!project) notFound();
   }
 
   // links
