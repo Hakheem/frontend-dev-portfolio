@@ -60,7 +60,6 @@ const SlugPage = async ({ params }: SlugPageProps) => {
   const project = await getProject(params.slug);
 
   if (!project) notFound();
-  }
 
   // links
   const liveLink = project.links?.find((link) =>
@@ -75,18 +74,21 @@ const SlugPage = async ({ params }: SlugPageProps) => {
     link.label.toLowerCase().includes('source')
   );
 
-  const mainCategory = project.category && project.category.length > 0 ? project.category[0] : 'Project';
+  const mainCategory =
+    project.category && project.category.length > 0
+      ? project.category[0]
+      : 'Project';
 
-  return (
-<div className='bg-gradient-to-br from-gray-900 via-gray-900 to-gray-950 text-gray-300'>
+return (
+  <div className='bg-gradient-to-br from-gray-900 via-gray-900 to-gray-950 text-gray-300'>
     <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-grid-16" />
-        
+
         <div className="relative padded py-20 lg:py-32">
           {/* Back Button */}
-          <Link 
+          <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8 group"
           >
@@ -210,7 +212,7 @@ const SlugPage = async ({ params }: SlugPageProps) => {
               <h2 className="text-2xl font-semibold text-white mb-6">Related Links</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {project.links
-                  .filter(link => 
+                  .filter(link =>
                     !link.label.toLowerCase().includes('live') &&
                     !link.label.toLowerCase().includes('demo') &&
                     !link.label.toLowerCase().includes('visit') &&
@@ -238,13 +240,13 @@ const SlugPage = async ({ params }: SlugPageProps) => {
         </div>
       </div>
     </div>
-    
+
     {/* Add spacing at the bottom */}
     <div className="py-12">
       <ProjectsCta />
     </div>
-</div>
-  );
+  </div>
+);
 };
 
 export default SlugPage;
