@@ -78,7 +78,6 @@ async function getContactData() {
   try {
     return await client.fetch(query);
   } catch (error) {
-    console.error('Error fetching contact data:', error);
     return null;
   }
 }

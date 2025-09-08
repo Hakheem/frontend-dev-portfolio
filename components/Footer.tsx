@@ -8,7 +8,6 @@ import {
   Twitter, 
   Mail, 
   ExternalLink, 
-  Heart, 
   Code,
   ArrowUp,
   Home,
@@ -34,7 +33,6 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ contactData }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const currentYear = new Date().getFullYear();
   
   // Show button when page is scrolled down
   useEffect(() => {

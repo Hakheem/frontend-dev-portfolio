@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Button from "@/components/ui/button";
 import React, { useEffect, useState } from 'react'
-import { client, urlFor } from '@/lib/sanity.client'
+import { client } from '@/lib/sanity.client'
 import ProjectCard from './_components/ProjectCard'
 import ProjectsCta from "./_components/ProjectsCta";
 
@@ -68,7 +67,6 @@ const ProjectsPage = () => {
         setProjects(data)
         setTotalProjects(count)
       } catch (error) {
-        console.error('Error fetching projects data:', error)
         setProjects([])
         setTotalProjects(0)
       } finally {

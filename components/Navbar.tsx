@@ -38,7 +38,6 @@ export default function Navbar() {
           setCvUrl(data.cvFile.asset.url)
         }
       } catch (error) {
-        console.error('Error fetching CV:', error)
       }
     }
 
@@ -47,7 +46,6 @@ export default function Navbar() {
 
   const downloadCV = () => {
     if (!cvUrl) {
-      console.warn('CV not available')
       return
     }
 

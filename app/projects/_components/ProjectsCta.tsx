@@ -1,8 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/button";
-import { FaEnvelope, FaPhoneVolume, FaRocket } from "react-icons/fa";
-import { MagicCard } from "@/components/magicui/magic-card";
+import { FaRocket } from "react-icons/fa";
 import { Mail, PhoneIncoming } from "lucide-react";
 
 const ProjectsCta = () => {
